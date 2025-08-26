@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Flow</title>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+      <style>
+            
+        * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        }
+        html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        }
+        :root {
+        --primary: #6a00ff;  
+        --secondary: #ff4da6; 
+        --dark: #0a0a0a;
+        --light: #ffffff;
+        --gray: #f7f7f7;
+        }
+
+        body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--dark);
+        line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+       
+        }
+        nav .open{
+            transform: translateX(0);
+        }
+        .toggle-btn{
+        cursor: pointer;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        background: none;
+        z-index: 1000;
+        display: none;
+        }
+        nav h1 {
+        font-size: 1.6rem;
+        color: var(--light);
+        font-weight: 700;
+        }
+
+        nav .links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        transition: transform 0.3s ease-in-out;
+        }
+
+        nav .links li a {
+        text-decoration: none;
+        color: var(--light);
+        font-weight: 500;
+        transition: all 0.5s;
+        }
+
+        nav .links li a:hover {
+        color: var(--secondary);
+        font-size: 1.1rem;
+        }
+        .mobile-title{
+            display: none;
+        }
+        /*  Hero Section  */
+        .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 10%;
+        background: var(--gray);
+        }
+
+        .hero .title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark);
+        }
+
+        .hero .title span {
+        color: var(--primary);
+        }
+
+        .hero .undertitle {
+        margin: 20px 0;
+        font-size: 1.1rem;
+        color: #444;
+        }
+        .buts{
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+
+        .buts a {
+        text-decoration: none; 
+        color: var(--light);   
+        }
+
+        .buts button {
+        margin-right: 15px;
+        padding: 14px 34px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--light);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .buts button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+            /* Calendar Card */
+        .calendar-card {
+        width: 380px;
+        border-radius: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        transition: transform 0.5s;
+        cursor: pointer;
+        }
+        .calendar-card:hover{
+            transform: translateY(-10px);
+        }
+        .calendar-card h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        }
+
+        .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        }
+
+        .day-header {
+        font-weight: 600;
+        text-align: center;
+        }
+
+        .calendar-grid div {
+        text-align: center;
+        padding: 8px 0;
+        border-radius: 6px;
+        transition: all 0.3s;
+        }
+
+        .calendar-grid div:hover {
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        }
+
+
+        /*  Features  */
+        .features {
+        padding: 80px 10%;
+        text-align: center;
+        background: var(--light);
+        
+        }
+
+        .features-h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: var(--primary);
+        background-color: var(--gray);
+        border-bottom-right-radius: 50px;
+        animation: typing 3s steps(80,end);
+        }
+        
+        .set , .options{
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin: 0 20px;
+        }
+
+        .feat, .options div {
+        border-radius: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        transition: transform 0.5s;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 2;
+        }
+
+        .feat:hover, .options div:hover {
+        transform: translateY(-10px);
+        }
+        .feat h1, .options div h2{
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 5px;
+            border: 1px solid pink;
+            border-radius: 20px;
+        }
+     
+        .feat i {
+        font-size: 2rem;
+        color: var(--light);
+        margin-bottom: 15px;
+        }
+        .feat p{
+            color: var(--light);
+        }
+        /*Testimonials */
+        .testimonial {
+        padding: 80px 10%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        text-align: center;
+        color: var(--light);
+        }
+        .testimonial h1{
+            background-color:var(--gray);
+            border-radius: 20px;
+            border-bottom-right-radius: 50px;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: auto;
+            border-right: 1px solid var(--primary);
+            animation: typing 3s steps(80,end);
+        }
+        @keyframes typing{
+            from{width: 0%;}
+            to{width: 110%;}
+        }
+
+        .reviews {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            align-items: stretch;
+        }
+       .reviews p{
+        text-align: center;
+        margin-bottom: 20px;
+       }
+        .reviews h2{
+            text-align:start;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .reviews div{
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+        flex: 2;
+        transition: transform 0.5s ;
+        cursor: pointer;
+        }
+        .reviews div:hover{
+            transform: translateY(-10px);
+        }
+        /* Pricing */
+        .pricing {
+        padding: 80px 10%;
+        text-align: center;
+        background: var(--gray);
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        }
+        .pricing h1:first-child{
+            color: var(--primary);
+            background-color: var(--light);
+            border-radius: 10px;
+            border-bottom-right-radius: 50px;
+            animation: typing 3s steps(80,end);
+        }
+
+        .options button {
+        margin-top: 15px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        background: var(--primary);
+        color: var(--light);
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.5s ease-in-out;
+        }
+
+        .options button:hover {
+        background: var(--secondary);
+        }
+   
+
+        /* Footer */
+        footer {
+        background:linear-gradient(135deg, var(--primary), var(--secondary)); ;
+        color: var(--light);
+        padding: 20px 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 15vh;
+        }
+
+        footer .icons i {
+        margin-left: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+        font-size: 1.5rem;
+        }
+
+        footer .icons i:hover {
+        color: var(--secondary);
+        }
+    @media (max-width: 541px){
+        nav{
+            justify-content: flex-start;
+            padding: 15px;
+        }
+        
+        .toggle-btn{
+            display:block;
+            margin-right: 10px;
+        }
+        #navbar h1{
+            text-align: center;
+            color: var(--light);
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-left: 25%;
+        }
+        nav .links{
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            height: 100vh;
+        }
+          nav.open .links {
+            display: flex; 
+        }
+
+  /* Title above links */
+        .mobile-title {
+            display: none;
+            color: var(--light);
+            border: solid 1px;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        nav.open .mobile-title {
+            display: block;
+        }
+        /* hero */
+        .hero{
+            flex-direction:column;
+            gap: 30px;
+        }
+        .left .title{
+            font-size: 2rem;
+            text-align: center;
+        }
+        .right{
+            scale: 0.8;
+        }
+        
+        /* features */
+        .features-h1{
+            font-size: 2rem;
+        }
+        .set, .reviews, #pricing{
+            flex-direction:column ;
+        }
+        /* testimonial */
+        .testimonial-title{
+            word-break: break-all;
+            height: max-content;
+        }
+      .options{
+        flex-direction: column;
+      }
+      /* footer */
+      footer{
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+      }
+      .fa-copyright{
+        line-height: 1.8;
+      }
+     
+    }
+      </style>
+</head>
+<body>
+    <button class="toggle-btn"><i class="fas fa-bars"></i></button>
+    <nav id="navbar"> 
+        <h1> TaskFlow</h1>
+        <ul class="links">
+            <div class="mobile-title">TaskFlow</div>
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#testimonial" class="nav-link">Reviews</a></li>
+            <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        </ul>
+    </nav>
+    <section class="hero" id="hero">
+        <div class="left">
+            <h1 class="title">
+                Your <span>Personal Assistant</span> to Manage Your Everyday Task
+            </h1>
+            <p class="undertitle">Stay organized, boost productivity, and conquer your to-do list with our intuitive platform designed to streamline task creation, collaboration, and tracking.</p>
+            <div class="buts">
+                <button><a href="#pricing">Get Started</a></button>
+                <button><a href="#pricing" id="free-trial">Free Trial</a></button>
+            </div>
+        </div>
+         <div class="right">
+    <div class="calendar-card">
+      <h3>August 2025</h3>
+      <div class="calendar-grid">
+        <div class="day-header">Sun</div>
+        <div class="day-header">Mon</div>
+        <div class="day-header">Tue</div>
+        <div class="day-header">Wed</div>
+        <div class="day-header">Thu</div>
+        <div class="day-header">Fri</div>
+        <div class="day-header">Sat</div>
+
+        <!-- Calendar dates -->
+        <div></div> <div></div> <div></div> <div></div> <div></div> <div>1</div> <div>2</div>
+        <div>3</div> <div>4</div> <div>5</div> <div>6</div> <div>7</div> <div>8</div> <div>9</div>
+        <div>10</div> <div>11</div> <div>12</div> <div>13</div> <div>14</div> <div>15</div> <div>16</div>
+        <div>17</div> <div>18</div> <div>19</div> <div>20</div> <div>21</div> <div>22</div> <div>23</div>
+        <div>24</div> <div>25</div> <div>26</div> <div>27</div> <div>28</div> <div>29</div> <div>30</div>
+        <div>31</div>
+        </div>
+        </div>
+        </div>
+    </section>
+    <section class="features" id="features">
+        <h1 class="features-h1">Features</h1>
+        <div class="set">
+            <div class="feat">
+                <i class="fa-solid fa-check"></i>
+                <h1>Easy Task Management</h1>
+                <p>Quickly add, edit, and complete tasks with a clean and intuitive interface.</p>
+            </div>
+            <div class="feat">
+                <i class="fa-solid fa-bell"></i>
+                <h1>Smart Reminders</h1>
+                <p>Never miss a deadline with customizable reminders and notifications.</p>
+            </div>
+            <div class="feat">
+                <i class="fa-solid fa-users"></i>
+                <h1>Collaboration</h1>
+                <p>Share tasks and projects with your team and track progress together.</p>
+            </div>
+        </div>
+    </section>
+    <section class="testimonial" id="testimonial">
+        <h1 id="testimonial-title">What Our Happy Users Say</h1>
+        <div class="reviews" id="reviews">
+            <div>
+                <p>“TaskFlow makes organizing tasks easy, clear, and stress-free. It's truly a lifesaver.”</p>
+                <h2>-Sarag J.</h2>
+            </div>
+            <div>
+                <p>“Simple, clean, and effective. Without doubt the best task manager I have ever used.”</p>
+                <h2>-David M.</h2>
+            </div>
+            <div>
+                <p>“Our team productivity improved rapidly once we all switched to TaskFlow together daily.”</p>
+                <h2>-Aisha R.</h2>
+            </div>
+        </div>
+    </section>
+    <section class="pricing" id="pricing">
+        <h1>Pricing Plans</h1>
+        <div class="options">
+            <div>
+                <h2>Free</h2>
+                <p>Basic features for personal use.</p>
+                <h1>0$</h1>
+                <button>Get Free</button>
+            </div>
+            <div>
+                <h2>Pro</h2>
+                <p>Advanced features fo ptofessionals</p>
+                <h1>9$/mo</h1>
+                <button>Go Pro</button>
+            </div>
+            <div>
+                <h2>Team</h2>
+                <p>Collaboration</p>
+                <h1>29$/mo</h1>
+                <button>Start team</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <i class="fa-solid fa-copyright"> 2025 Personal Assistant. All rights reserved.</i>
+        <div class="icons">
+            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-facebook"></i>
+        </div>
+
+    </footer>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle-btn'); 
+        const sidebar = document.getElementById('navbar');
+        const icon = toggleBtn.querySelector('i');
+         const navLinks = document.querySelectorAll('.nav-link'); 
+
+        toggleBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+
+            if (sidebar.classList.contains("open")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times"); 
+            } else {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+            }
+            
+        });
+       
+
+        navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            sidebar.classList.remove("open");
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+        });
+});
+    </script>
+</body>
+</html>
