@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Blog</title>
+
+</head>
+<body>
+  <header>
+    <h1>My Personal Blog</h1>
+  </header>
+
+  <div class="controls">
+    <div class="filter">
+      <button onclick="filterPosts('all')">All</button>
+      <button onclick="filterPosts('tech')">Tech</button>
+      <button onclick="filterPosts('travel')">Travel</button>
+      <button onclick="filterPosts('food')">Food</button>
+    </div>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search posts by title..." oninput="searchPosts()">
+    </div>
+  </div>
+
+  <div class="blog-container" id="blog-container"></div>
+  <div class="pagination" id="pagination"></div>
+
+</body>
+</html>

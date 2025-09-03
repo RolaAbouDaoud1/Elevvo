@@ -1,0 +1,423 @@
+        * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        }
+        html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        }
+        :root {
+        --primary: #6a00ff;  
+        --secondary: #ff4da6; 
+        --dark: #0a0a0a;
+        --light: #ffffff;
+        --gray: #f7f7f7;
+        }
+
+        body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--dark);
+        line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+       
+        }
+        nav .open{
+            transform: translateX(0);
+        }
+        .toggle-btn{
+        cursor: pointer;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        background: none;
+        z-index: 1000;
+        display: none;
+        }
+        nav h1 {
+        font-size: 1.6rem;
+        color: var(--light);
+        font-weight: 700;
+        }
+
+        nav .links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        transition: transform 0.3s ease-in-out;
+        }
+
+        nav .links li a {
+        text-decoration: none;
+        color: var(--light);
+        font-weight: 500;
+        transition: all 0.5s;
+        }
+
+        nav .links li a:hover {
+        color: var(--secondary);
+        font-size: 1.1rem;
+        }
+        .mobile-title{
+            display: none;
+        }
+        /*  Hero Section  */
+        .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 10%;
+        background: var(--gray);
+        }
+
+        .hero .title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark);
+        }
+
+        .hero .title span {
+        color: var(--primary);
+        }
+
+        .hero .undertitle {
+        margin: 20px 0;
+        font-size: 1.1rem;
+        color: #444;
+        }
+        .buts{
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+
+        .buts a {
+        text-decoration: none; 
+        color: var(--light);   
+        }
+
+        .buts button {
+        margin-right: 15px;
+        padding: 14px 34px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--light);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .buts button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+            /* Calendar Card */
+        .calendar-card {
+        width: 380px;
+        border-radius: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        transition: transform 0.5s;
+        cursor: pointer;
+        }
+        .calendar-card:hover{
+            transform: translateY(-10px);
+        }
+        .calendar-card h3 {
+        text-align: center;
+        margin-bottom: 15px;
+        }
+
+        .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        }
+
+        .day-header {
+        font-weight: 600;
+        text-align: center;
+        }
+
+        .calendar-grid div {
+        text-align: center;
+        padding: 8px 0;
+        border-radius: 6px;
+        transition: all 0.3s;
+        }
+
+        .calendar-grid div:hover {
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        }
+
+
+        /*  Features  */
+        .features {
+        padding: 80px 10%;
+        text-align: center;
+        background: var(--light);
+        
+        }
+
+        .features-h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: var(--primary);
+        background-color: var(--gray);
+        border-bottom-right-radius: 50px;
+        animation: typing 3s steps(80,end);
+        }
+        
+        .set , .options{
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin: 0 20px;
+        }
+
+        .feat, .options div {
+        border-radius: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        transition: transform 0.5s;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 2;
+        }
+
+        .feat:hover, .options div:hover {
+        transform: translateY(-10px);
+        }
+        .feat h1, .options div h2{
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 5px;
+            border: 1px solid pink;
+            border-radius: 20px;
+        }
+     
+        .feat i {
+        font-size: 2rem;
+        color: var(--light);
+        margin-bottom: 15px;
+        }
+        .feat p{
+            color: var(--light);
+        }
+        /*Testimonials */
+        .testimonial {
+        padding: 80px 10%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        text-align: center;
+        color: var(--light);
+        }
+        .testimonial h1{
+            background-color:var(--gray);
+            border-radius: 20px;
+            border-bottom-right-radius: 50px;
+            color: var(--primary);
+            white-space: nowrap;
+            overflow: auto;
+            border-right: 1px solid var(--primary);
+            animation: typing 3s steps(80,end);
+        }
+        @keyframes typing{
+            from{width: 0%;}
+            to{width: 110%;}
+        }
+
+        .reviews {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            align-items: stretch;
+        }
+       .reviews p{
+        text-align: center;
+        margin-bottom: 20px;
+       }
+        .reviews h2{
+            text-align:start;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .reviews div{
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+        flex: 2;
+        transition: transform 0.5s ;
+        cursor: pointer;
+        }
+        .reviews div:hover{
+            transform: translateY(-10px);
+        }
+        /* Pricing */
+        .pricing {
+        padding: 80px 10%;
+        text-align: center;
+        background: var(--gray);
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        }
+        .pricing h1:first-child{
+            color: var(--primary);
+            background-color: var(--light);
+            border-radius: 10px;
+            border-bottom-right-radius: 50px;
+            animation: typing 3s steps(80,end);
+        }
+
+        .options button {
+        margin-top: 15px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        background: var(--primary);
+        color: var(--light);
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.5s ease-in-out;
+        }
+
+        .options button:hover {
+        background: var(--secondary);
+        }
+   
+
+        /* Footer */
+        footer {
+        background:linear-gradient(135deg, var(--primary), var(--secondary)); ;
+        color: var(--light);
+        padding: 20px 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 15vh;
+        }
+
+        footer .icons i {
+        margin-left: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+        font-size: 1.5rem;
+        }
+
+        footer .icons i:hover {
+        color: var(--secondary);
+        }
+    @media (max-width: 541px){
+        nav{
+            justify-content: flex-start;
+            padding: 15px;
+        }
+        
+        .toggle-btn{
+            display:block;
+            margin-right: 10px;
+        }
+        #navbar h1{
+            text-align: center;
+            color: var(--light);
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-left: 25%;
+        }
+        nav .links{
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            height: 100vh;
+        }
+          nav.open .links {
+            display: flex; 
+        }
+
+  /* Title above links */
+        .mobile-title {
+            display: none;
+            color: var(--light);
+            border: solid 1px;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        nav.open .mobile-title {
+            display: block;
+        }
+        /* hero */
+        .hero{
+            flex-direction:column;
+            gap: 30px;
+        }
+        .left .title{
+            font-size: 2rem;
+            text-align: center;
+        }
+        .right{
+            scale: 0.8;
+        }
+        
+        /* features */
+        .features-h1{
+            font-size: 2rem;
+        }
+        .set, .reviews, #pricing{
+            flex-direction:column ;
+        }
+        /* testimonial */
+        .testimonial-title{
+            word-break: break-all;
+            height: max-content;
+        }
+      .options{
+        flex-direction: column;
+      }
+      /* footer */
+      footer{
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+      }
+      .fa-copyright{
+        line-height: 1.8;
+      }
+     
+    }
